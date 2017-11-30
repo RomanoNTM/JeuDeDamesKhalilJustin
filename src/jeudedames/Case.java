@@ -6,7 +6,7 @@
 package jeudedames;
 
 /**
- *
+ *Classe de gestion d'une case
  * @author Justin
  */
 public class Case {
@@ -17,5 +17,21 @@ public class Case {
         this.p = p;
         this.c = c;
     }
-    
+
+    public Pion getP() {
+        return p;
+    }
+
+    public void setP(Pion p) {
+        this.p = p;
+    }
+
+    public Couleur getC() {
+        return c;
+    }
+
+    public void setC(Couleur c) {
+        this.c = c;
+    }
+ 
 }

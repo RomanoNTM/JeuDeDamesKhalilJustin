@@ -46,7 +46,5 @@ public class Pion {
     public void setMonte(boolean monte) {
         this.monte = monte;
     }
-    
-    
 
 }
