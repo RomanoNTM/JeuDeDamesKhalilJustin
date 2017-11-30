@@ -18,7 +18,7 @@ public class Plateau extends JPanel{
 
     private static final int TAILLE = 10;
     private boolean tourNoir;
-    private Case[][] env;
+    private final Case[][] env;
     private Case caseActive;
 
     public Plateau() {
@@ -29,7 +29,7 @@ public class Plateau extends JPanel{
         for (int i = 0; i < TAILLE; i++) {
             for (int j = 0; j < TAILLE; j++) {
                 if (i <= 3) {
-                    if (j % 2 == 1) {
+                    if ((i+j) % 2 == 1) {
                         env[i][j] = new Case(new Pion(Couleur.NOIR), Couleur.NOIR,i,j);
                         this.add(this.env[i][j]);
                         //this.getLayout().addLayoutComponent("Case [" + i + ";" + j + "]", this.env[i][j]);
@@ -38,7 +38,7 @@ public class Plateau extends JPanel{
                         this.add(this.env[i][j]);
                     }
                 } else if (i >= 6) {
-                    if (j % 2 == 1) {
+                    if ((i+j) % 2 == 1) {
                         env[i][j] = new Case(new Pion(Couleur.BLANC), Couleur.NOIR,i,j);
                         this.add(this.env[i][j]);
                     } else {
@@ -46,7 +46,7 @@ public class Plateau extends JPanel{
                         this.add(this.env[i][j]);
                     }
                 } else{
-                    if (j%2 == 1){
+                    if ((i+j)%2 == 1){
                         env[i][j] = new Case(null, Couleur.NOIR, i, j);
                         this.add(this.env[i][j]);
                     } else{

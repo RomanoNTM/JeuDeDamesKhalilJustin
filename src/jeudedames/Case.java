@@ -30,6 +30,9 @@ public class Case extends JPanel {
     }
     
     protected void init() {
+        this.setPreferredSize(new Dimension(60,60));
+        this.setMaximumSize(new Dimension(60,60));
+        this.setMinimumSize(new Dimension(60,60));
         if (this.c == BLANC) {
             this.setBackground(new Color(255,255,255));
         }
@@ -39,9 +42,7 @@ public class Case extends JPanel {
         if (this.p != null) {
            this.add(p); 
         }
-        this.setPreferredSize(new Dimension(60,60));
-        this.setMaximumSize(new Dimension(60,60));
-        this.setMinimumSize(new Dimension(60,60));
+        
     }
    
 
