@@ -7,18 +7,23 @@ package jeudedames;
 
 import static java.lang.Math.abs;
 import java.util.ArrayList;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
 
 /**
  *
  * @author Justin
  */
-public class Plateau {
+public class Plateau extends JPanel{
 
     private static final int TAILLE = 10;
     private boolean tourNoir;
     private Case[][] env;
+    private Case caseActive;
 
     public Plateau() {
+        super();
+        this.setLayout(new java.awt.GridLayout(TAILLE, TAILLE));
         tourNoir = false;
         env = new Case[TAILLE][TAILLE];
         for (int i = 0; i < TAILLE; i++) {
@@ -26,24 +31,32 @@ public class Plateau {
                 if (i <= 3) {
                     if (j % 2 == 1) {
                         env[i][j] = new Case(new Pion(Couleur.NOIR), Couleur.NOIR,i,j);
+                        this.add(this.env[i][j]);
+                        //this.getLayout().addLayoutComponent("Case [" + i + ";" + j + "]", this.env[i][j]);
                     } else {
                         env[i][j] = new Case(null, Couleur.BLANC,i,j);
+                        this.add(this.env[i][j]);
                     }
                 } else if (i >= 6) {
                     if (j % 2 == 1) {
                         env[i][j] = new Case(new Pion(Couleur.BLANC), Couleur.NOIR,i,j);
+                        this.add(this.env[i][j]);
                     } else {
                         env[i][j] = new Case(null, Couleur.BLANC,i,j);
+                        this.add(this.env[i][j]);
                     }
                 } else{
                     if (j%2 == 1){
                         env[i][j] = new Case(null, Couleur.NOIR, i, j);
+                        this.add(this.env[i][j]);
                     } else{
                         env[i][j] = new Case(null, Couleur.BLANC, i, j);
+                        this.add(this.env[i][j]);
                     }
                 }
             }
         }
+        caseActive = null;
     }
 
     public boolean deplacer(Case depart, Case arrivee) {
@@ -133,4 +146,7 @@ public class Plateau {
         return listeCases;
     }
     
+    void setCaseActive(Case c){
+        this.caseActive = c;
+    }
 }
