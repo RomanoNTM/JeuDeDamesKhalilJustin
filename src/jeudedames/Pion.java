@@ -7,7 +7,6 @@ package jeudedames;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 import static jeudedames.Couleur.*;
 
@@ -16,7 +15,7 @@ import static jeudedames.Couleur.*;
  *
  * @author Khalil
  */
-public class Pion {
+public class Pion extends JPanel {
 
     private Couleur couleur;
     private boolean monte;

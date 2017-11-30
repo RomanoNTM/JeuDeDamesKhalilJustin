@@ -65,7 +65,6 @@ public class Plateau {
         }
     }
 
-    
     public ArrayList<Case> casesDisponibles(Case c){
         ArrayList<Case> listeCases = new ArrayList<>();
         
@@ -132,5 +131,7 @@ public class Plateau {
         
         return listeCases;
     }
+    
+    
     
 }
