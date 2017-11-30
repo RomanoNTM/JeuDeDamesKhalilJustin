@@ -29,6 +29,21 @@ public class Pion extends JPanel {
             this.monte = false;
         }
         dame = false;
+        initPion();
+    }
+
+    protected void initPion() {
+        if (this.couleur == BLANC) {
+            this.setBackground(new Color(230,230,230));
+        }
+        else {
+            this.setBackground(new Color(10,10,10));
+        }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        g.drawOval(0, 0, g.getClipBounds().width, g.getClipBounds().height);
     }
 
     public Couleur getCouleur() {

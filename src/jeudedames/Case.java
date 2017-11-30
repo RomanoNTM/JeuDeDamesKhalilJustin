@@ -26,10 +26,10 @@ public class Case extends JPanel {
         this.c = c;
         this.i = i;
         this.j = j;
-        init();
+        initCase();
     }
     
-    protected void init() {
+    protected void initCase() {
         if (this.c == BLANC) {
             this.setBackground(new Color(255,255,255));
         }
