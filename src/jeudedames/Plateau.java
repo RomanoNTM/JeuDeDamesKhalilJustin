@@ -25,21 +25,21 @@ public class Plateau {
             for (int j = 0; j < TAILLE; j++) {
                 if (i <= 3) {
                     if (j % 2 == 1) {
-                        env[i][j] = new Case(new Pion(Couleur.NOIR), Couleur.NOIR);
+                        env[i][j] = new Case(new Pion(Couleur.NOIR), Couleur.NOIR,i,j);
                     } else {
-                        env[i][j] = new Case(null, Couleur.BLANC);
+                        env[i][j] = new Case(null, Couleur.BLANC,i,j);
                     }
                 } else if (i >= 6) {
                     if (j % 2 == 1) {
-                        env[i][j] = new Case(new Pion(Couleur.BLANC), Couleur.NOIR);
+                        env[i][j] = new Case(new Pion(Couleur.BLANC), Couleur.NOIR,i,j);
                     } else {
-                        env[i][j] = new Case(null, Couleur.BLANC);
+                        env[i][j] = new Case(null, Couleur.BLANC,i,j);
                     }
-                } else {
-                    if (j % 2 == 1) {
-                        env[i][j] = new Case(null, Couleur.NOIR);
-                    } else {
-                        env[i][j] = new Case(null, Couleur.BLANC);
+                } else{
+                    if (j%2 == 1){
+                        env[i][j] = new Case(null, Couleur.NOIR, i, j);
+                    } else{
+                        env[i][j] = new Case(null, Couleur.BLANC, i, j);
                     }
                 }
             }
@@ -47,7 +47,7 @@ public class Plateau {
     }
 
     public boolean deplacer(Case depart, Case arrivee) {
-        ArrayList<Case> casesDispo = casesDisponible(depart);
+        ArrayList<Case> casesDispo = casesDisponibles(depart);
         if (depart.getP() != null) {
             if (casesDispo.contains(arrivee)) {
                 arrivee.setP(depart.getP());
@@ -65,4 +65,72 @@ public class Plateau {
         }
     }
 
+    
+    public ArrayList<Case> casesDisponibles(Case c){
+        ArrayList<Case> listeCases = new ArrayList<>();
+        
+        if (c.getP() != null){
+            Pion p = c.getP();
+            int i = c.getI();
+            int j = c.getJ();
+            
+            if (p.isMonte() || p.isDame()){
+                if (i != 0){
+                    if (j != 0){
+                        if (env[i-1][j-1].getP() == null){
+                            listeCases.add(env[i-1][j-1]);
+                        } else{
+                            if (i > 1 && j > 1){
+                                if (env[i-1][j-1].getC() != c.getC()){
+                                    listeCases.add(env[i-2][j-2]);
+                                }
+                            }
+                        }
+                    }
+                        
+                    if (j != TAILLE - 1){
+                        if (env[i-1][j+1].getP() == null){
+                            listeCases.add(env[i-1][j+1]);
+                        } else{
+                            if (i > 1 && j < TAILLE - 2){
+                                if (env[i-1][j+1].getC() != c.getC()){
+                                    listeCases.add(env[i-2][j+2]);
+                                }
+                            }
+                        }
+                    }
+                }                   
+            }
+            if (!p.isMonte() || p.isDame()){
+                if (i != TAILLE - 1){
+                    if (j != 0){
+                        if (env[i+1][j-1].getP() == null){
+                            listeCases.add(env[i+1][j-1]);
+                        } else{
+                            if (i < TAILLE - 2 && j > 1){
+                                if (env[i+1][j-1].getC() != c.getC()){
+                                    listeCases.add(env[i+2][j-2]);
+                                }
+                            }
+                        }
+                    }
+                        
+                    if (j != TAILLE - 1){
+                        if (env[i+1][j+1].getP() == null){
+                            listeCases.add(env[i+1][j+1]);
+                        } else{
+                            if (i < TAILLE - 2 && j < TAILLE - 2){
+                                if (env[i-1][j+1].getC() != c.getC()){
+                                    listeCases.add(env[i+2][j+2]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        return listeCases;
+    }
+    
 }
