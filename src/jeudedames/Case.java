@@ -12,10 +12,14 @@ package jeudedames;
 public class Case {
     private Pion p;
     private Couleur c;
+    private int i;
+    private int j;
     
-    public Case(Pion p, Couleur c){
+    public Case(Pion p, Couleur c, int i, int j){
         this.p = p;
         this.c = c;
+        this.i = i;
+        this.j = j;
     }
 
     public Pion getP() {
@@ -33,5 +37,22 @@ public class Case {
     public void setC(Couleur c) {
         this.c = c;
     }
- 
+
+    public int getI() {
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
+    }
+
+    public int getJ() {
+        return j;
+    }
+
+    public void setJ(int j) {
+        this.j = j;
+    }
+
+    
 }
