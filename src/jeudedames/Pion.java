@@ -20,6 +20,7 @@ public class Pion {
 
     private Couleur couleur;
     private boolean monte;
+    private boolean dame;
 
     public Pion(Couleur couleur) {
         this.couleur = couleur;
@@ -28,7 +29,7 @@ public class Pion {
         } else {
             this.monte = false;
         }
-
+        dame = false;
     }
 
     public Couleur getCouleur() {
@@ -45,6 +46,14 @@ public class Pion {
 
     public void setMonte(boolean monte) {
         this.monte = monte;
+    }
+
+    public boolean isDame() {
+        return dame;
+    }
+
+    public void setDame(boolean dame) {
+        this.dame = dame;
     }
 
 }

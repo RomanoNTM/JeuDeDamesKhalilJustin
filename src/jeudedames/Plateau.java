@@ -5,6 +5,8 @@
  */
 package jeudedames;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Justin
@@ -13,7 +15,7 @@ public class Plateau{
     
     private static final int TAILLE =10;
     private boolean tourNoir;
-    private Case[][] env;
+    private final Case[][] env;
     
     public Plateau(){
         tourNoir = false;
@@ -41,6 +43,17 @@ public class Plateau{
                 }
             }
         }
+    }
+    
+    public ArrayList<Case> casesDisponibles(Case c){
+        ArrayList<Case> listeCases = new ArrayList<>();
+        
+        if (c.getP() != null){
+            Pion p = c.getP();
+            
+        }
+        
+        return listeCases;
     }
     
 }
