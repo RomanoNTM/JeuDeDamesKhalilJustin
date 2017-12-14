@@ -5,10 +5,12 @@
  */
 package jeudedames;
 
+import java.awt.Color;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import javax.swing.JFrame;
 
 /**
  *
@@ -67,19 +69,30 @@ public class Plateau extends JPanel {
 
     public boolean deplacer(Case depart, Case arrivee) {
         ArrayList<Case> casesDispo = casesDisponibles(depart);
+        int i1 = depart.getI(), i2 = arrivee.getI(), j1 = depart.getJ(), j2 = arrivee.getJ();
         if (depart.getP() != null) {
             if (casesDispo.contains(arrivee)) {
-                arrivee.setP(depart.getP());
-                depart.setP(null);
-                if (abs(depart.getI() - arrivee.getI()) > 1 || abs(depart.getJ() - arrivee.getJ()) > 1) {
-                    this.env[(depart.getI() + arrivee.getI()) / 2][(depart.getJ() + arrivee.getJ()) / 2].setP(null);
+                arrivee.setP(depart.getP(), false);
+                depart.setP(null, false);
+                if (abs(i1 - i2) > 1 || abs(j1 - j2) > 1) {
+                    this.env[(i1 + i2) / 2][(j1 + j2) / 2].setP(null, true);
                 }
                 caseActive=null;
                 return true;
             } else {
+                for (Case c1 : casesDispo){
+                    c1.setBackground(new Color(0, 153, 204));
+                    c1.validate();
+                    c1.repaint();
+                }
                 return false;
             }
         } else {
+            for (Case c1 : casesDispo){
+                c1.setBackground(new Color(0, 153, 204));
+                c1.validate();
+                c1.repaint();
+            }
             return false;
         }
     }
@@ -99,7 +112,7 @@ public class Plateau extends JPanel {
                             listeCases.add(env[i - 1][j - 1]);
                         } else {
                             if (i > 1 && j > 1) {
-                                if (env[i - 1][j - 1].getC() != c.getC()) {
+                                if (env[i - 1][j - 1].getP().getCouleur() != c.getP().getCouleur() && (env[i - 2][j - 2].getP() == null)) {
                                     listeCases.add(env[i - 2][j - 2]);
                                 }
                             }
@@ -111,7 +124,7 @@ public class Plateau extends JPanel {
                             listeCases.add(env[i - 1][j + 1]);
                         } else {
                             if (i > 1 && j < TAILLE - 2) {
-                                if (env[i - 1][j + 1].getC() != c.getC()) {
+                                if (env[i - 1][j + 1].getP().getCouleur() != c.getP().getCouleur() && (null == env[i-2][j+2].getP())) {
                                     listeCases.add(env[i - 2][j + 2]);
                                 }
                             }
@@ -126,7 +139,7 @@ public class Plateau extends JPanel {
                             listeCases.add(env[i + 1][j - 1]);
                         } else {
                             if (i < TAILLE - 2 && j > 1) {
-                                if (env[i + 1][j - 1].getC() != c.getC()) {
+                                if (env[i + 1][j - 1].getP().getCouleur() != c.getP().getCouleur() && (null == env[i+2][j-2].getP())) {
                                     listeCases.add(env[i + 2][j - 2]);
                                 }
                             }
@@ -138,7 +151,7 @@ public class Plateau extends JPanel {
                             listeCases.add(env[i + 1][j + 1]);
                         } else {
                             if (i < TAILLE - 2 && j < TAILLE - 2) {
-                                if (env[i - 1][j + 1].getC() != c.getC()) {
+                                if (env[i + 1][j + 1].getP().getCouleur() != c.getP().getCouleur() && (null == env[i+2][j+2].getP())) {
                                     listeCases.add(env[i + 2][j + 2]);
                                 }
                             }

@@ -50,17 +50,20 @@ public class Case extends JPanel {
         return p;
     }
 
-    public void setP(Pion p) {
+    public void setP(Pion p, boolean mange) {
         if (p != null) {
+            this.p = p;
             this.add(p);
-            p.setVisible(true);
+            this.p.setVisible(true);
         } else {
-            if (this.p != null) {
-                this.remove(this.p);
+            if (mange) {
+                this.p.setVisible(false);
             }
-
+            this.remove(this.p);
+            this.p = null;
         }
-        this.p = p;
+        this.validate();
+        this.repaint();
     }
 
     public Couleur getC() {
