@@ -5,9 +5,9 @@
  */
 package jeudedames;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.Color;
 import static jeudedames.Couleur.BLANC;
 
 /**
@@ -33,42 +33,17 @@ public class CaseListener implements MouseListener {
         if (plateau.getCaseActive() == null){
             if (c.getP() != null){
                 plateau.setCaseActive(c);
-                for (Case c1 : plateau.casesDisponibles(c)){
-                    c1.setBackground(new Color(0, 153, 204));
-                    c1.validate();
-                    c1.repaint();
-                }
             }
         } else{
             if (c.getP() == null){
                 for (Case c1 : plateau.casesDisponibles(plateau.getCaseActive())){
-                    if (c1.getC() == BLANC){
-                        c1.setBackground(Color.WHITE);
-                    } else{
-                        c1.setBackground(Color.BLACK);
-                    }
+                    c1.setBackground(Color.BLACK);
                     c1.validate();
                     c1.repaint();
                 }
                 plateau.deplacer(plateau.getCaseActive(), c);
             } else{
-                for (Case c1 : plateau.casesDisponibles(plateau.getCaseActive())){
-                    if (c1.getC() == BLANC){
-                        c1.setBackground(Color.WHITE);
-                    } else{
-                        c1.setBackground(Color.BLACK);
-                    }
-                    c1.validate();
-                    c1.repaint();
-                }
-                
                 plateau.setCaseActive(c);
-                
-                for (Case c1 : plateau.casesDisponibles(c)){
-                    c1.setBackground(new Color(0, 153, 204));
-                    c1.validate();
-                    c1.repaint();
-                }
             }
         }
     }

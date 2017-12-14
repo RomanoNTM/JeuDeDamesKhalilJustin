@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
+import static jeudedames.Couleur.BLANC;
 
 /**
  *
@@ -165,6 +166,60 @@ public class Plateau extends JPanel {
     }
 
     void setCaseActive(Case c) {
+        if (c.getP() != null){
+            if (caseActive == null){
+                casesDisponibles(c).stream().map((c1) -> {
+                    c1.setBackground(new Color(0, 153, 204));
+                    return c1;
+                }).map((c1) -> {
+                    c1.validate();
+                    return c1;
+                }).forEachOrdered((c1) -> {
+                    c1.repaint();
+                });
+            } else{
+                casesDisponibles(caseActive).stream().map((c1) -> {
+                    if (c1.getC() == BLANC){
+                        c1.setBackground(Color.WHITE);
+                    } else{
+                        c1.setBackground(Color.BLACK);
+                    }
+                    return c1;
+                }).map((c1) -> {
+                    c1.validate();
+                    return c1;
+                }).forEachOrdered((c1) -> {
+                    c1.repaint();
+                });
+
+                casesDisponibles(c).stream().map((c1) -> {
+                    c1.setBackground(new Color(0, 153, 204));
+                    return c1;
+                }).map((c1) -> {
+                    c1.validate();
+                    return c1;
+                }).forEachOrdered((c1) -> {
+                    c1.repaint();
+                });
+            }
+        } else{
+            if (caseActive != null){
+                casesDisponibles(caseActive).stream().map((c1) -> {
+                    if (c1.getC() == BLANC){
+                        c1.setBackground(Color.WHITE);
+                    } else{
+                        c1.setBackground(Color.BLACK);
+                    }
+                    return c1;
+                }).map((c1) -> {
+                    c1.validate();
+                    return c1;
+                }).forEachOrdered((c1) -> {
+                    c1.repaint();
+                });
+            }
+        }
+        
         this.caseActive = c;
     }
 
