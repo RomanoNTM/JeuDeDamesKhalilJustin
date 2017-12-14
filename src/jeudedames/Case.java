@@ -11,16 +11,18 @@ import javax.swing.JPanel;
 import static jeudedames.Couleur.BLANC;
 
 /**
- *Classe de gestion d'une case
+ * Classe de gestion d'une case
+ *
  * @author Justin
  */
 public class Case extends JPanel {
+
     private Pion p;
     private Couleur c;
     private int i;
     private int j;
-    
-    public Case(Pion p, Couleur c, int i, int j){
+
+    public Case(Pion p, Couleur c, int i, int j) {
         super();
         this.p = p;
         this.c = c;
@@ -28,28 +30,36 @@ public class Case extends JPanel {
         this.j = j;
         initCase();
     }
-    
+
     protected void initCase() {
+        this.setPreferredSize(new Dimension(60, 60));
+        this.setMaximumSize(new Dimension(60, 60));
+        this.setMinimumSize(new Dimension(60, 60));
         if (this.c == BLANC) {
-            this.setBackground(new Color(255,255,255));
-        }
-        else {
-            this.setBackground(new Color(0,0,0));
+            this.setBackground(new Color(255, 255, 255));
+        } else {
+            this.setBackground(new Color(0, 0, 0));
         }
         if (this.p != null) {
-           this.add(p); 
+            this.add(p);
+            this.p.setVisible(true);
         }
-        this.setPreferredSize(new Dimension(60,60));
-        this.setMaximumSize(new Dimension(60,60));
-        this.setMinimumSize(new Dimension(60,60));
     }
-   
 
     public Pion getP() {
         return p;
     }
 
     public void setP(Pion p) {
+        if (p != null) {
+            this.add(p);
+            p.setVisible(true);
+        } else {
+            if (this.p != null) {
+                this.remove(this.p);
+            }
+
+        }
         this.p = p;
     }
 
@@ -77,5 +87,4 @@ public class Case extends JPanel {
         this.j = j;
     }
 
-    
 }
